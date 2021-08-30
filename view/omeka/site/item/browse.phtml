@@ -44,10 +44,11 @@ $sortHeadings = [
 <!--linkraw, moet over hele cel -->
         <?php echo '<center>'; echo $item->linkRaw($thumbnail); echo '</center>';?>
         <?php endif; ?>
-<!--        <p class="customType"><b><?php echo $item->value('schema:identifier'); ?></b></p> -->
+<!--        <p class="customType"><b><?php echo $item->value('dcterms:subject'); ?></b></p> -->
         <!-- moet modsrdf:identifier worden ... -->
-        <div class='browseTitre'><center><h4><?php echo $item->link($item->value('schema:identifier')); ?></h4></center></div>
+        <div class='browseTitre'><center><h3><?php echo $item->link($item->value('modsrdf:identifier')); ?></h3></center></div>
         <?php if ($description = $item->value('dcterms:description')): ?>
+        <div class="browseTitre"><center><h4><?php echo $item->link(mb_substr($item->value('dcterms:subject'),0,75)); ?></h4></center></div></br>
         <div class="description"><?php echo mb_substr($description,0,75); echo $item->link('...'); ?></div></br>
         <?php endif; ?>
     </li>
