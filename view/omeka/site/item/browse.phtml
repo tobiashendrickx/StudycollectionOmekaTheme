@@ -41,9 +41,9 @@ $sortHeadings = [
     <?php foreach ($items as $item): ?>
     <li class="item resource">
 <!-- set inventarisnummer in image -->
-      <?php if ($invnr = $item->value('modsrdf:identifier')): ?>
-      <div class="volumeNumber"><?php echo 'invnr ' ?><?php echo $invnr; ?></div>
-      <?php endif; ?>
+<?php if ($invnr = $item->value('modsrdf:identifier')): ?>
+  <div class="volumeNumber"><!--<?php echo 'invnr ' ?>--><?php echo $invnr; ?></div>
+<?php endif; ?>
         <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
 <!--linkraw, moet over hele cel -->
         <?php echo '<center>'; echo $item->linkRaw($thumbnail); echo '</center>';?>

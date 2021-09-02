@@ -8,7 +8,7 @@ $this->htmlElement('body')->appendAttribute('class', 'index search');
 <?php echo $this->pageTitle(sprintf($this->translate('Search results for “%s”'), $query)); ?>
 
 <div>
-    <h2><?php echo 'Objets' ; ?></h2>
+    <h2><?php echo 'Items' ; ?></h2>
     <?php if ($items): ?>
 
     <?php echo $this->hyperlink(
@@ -20,26 +20,29 @@ $this->htmlElement('body')->appendAttribute('class', 'index search');
             true
         )
     ); ?>
+<!-- start totalresults -->
+<?php
+  echo '(total)', $totalCount;
+?>
+<!-- end totalresults -->
 
 <ul class="resource-list">
     <?php foreach ($items as $item): ?>
     <li class="item resource">
-        <?php if ($volumeNumber = $item->value('schema:volumeNumber')): ?>
-        <div class="volumeNumber"><?php echo 'Vol. n. ' ?><?php echo $volumeNumber; ?></div>
-        <?php endif; ?>
+<!-- set inventarisnummer in image -->
+      <?php if ($invnr = $item->value('modsrdf:identifier')): ?>
+        <div class="volumeNumber"><!--<?php echo 'invnr ' ?>--><?php echo $invnr; ?></div>
+      <?php endif; ?>
         <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
         <?php echo '<center>'; echo $item->linkRaw($thumbnail); echo '</center>';?>
         <?php endif; ?>
-        </div>
-        <p class="customType"><b><?php echo $item->value('dcterms:type'); ?></b></p>
-        <div class='browseTitre'><center><h4><?php echo $item->link($item->value('dcterms:title')); ?></h4></center></div>
+        <div class='browseTitre'><center><h3><?php echo $item->link($item->value('dcterms:subject')); ?></h3></center></div>
         <?php if ($description = $item->value('dcterms:description')): ?>
         <div class="description"><?php echo mb_substr($description,0,75); echo $item->link('...'); ?></div></br>
         <?php endif; ?>
     </li>
     <?php endforeach; ?>
 </ul>
-
     <?php echo $this->hyperlink(
         sprintf($this->translate('View all results'), $itemsTotal),
         $this->url(
@@ -54,7 +57,7 @@ $this->htmlElement('body')->appendAttribute('class', 'index search');
     <p><?php echo $this->translate('No results'); ?></p>
     <?php endif; ?>
 </div>
-
+<!-- Keep this and adapt if you want to show other result (e.g. materials, agents, documents books,...)
 <div>
     <h2><?php echo 'Articles' ; ?></h2>
     <?php if ($pages): ?>
@@ -67,3 +70,4 @@ $this->htmlElement('body')->appendAttribute('class', 'index search');
     <p><?php echo $this->translate('No results'); ?></p>
     <?php endif; ?>
 </div>
+-->

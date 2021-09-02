@@ -31,7 +31,8 @@ $userBar = $this->userBar();
         <div id="wrap">
             <header>
                 <?php if ($this->themeSetting('logo')): ?>
-                <a href="<?php echo $site->url(); ?>" class="site-title"><img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" title="Logo"></a>
+<!--                <a href="<?php echo $site->url(); ?>" class="site-title"><img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" title="Logo"></a> -->
+                <a href="<?php echo $site->url(); ?>" class="site-title"><?php echo $this->pageTitle($site->title()); ?></a>
                 <?php else: ?>
                 <a href="<?php echo $site->url(); ?>" class="site-title"><?php echo $this->pageTitle($site->title()); ?></a>
                 <?php endif; ?>
@@ -55,8 +56,8 @@ $userBar = $this->userBar();
                 <?php echo $this->content; ?>
             </div>
             <footer>
-                <nav><ul class="navigation"><li><a href="<?php echo $site->url(); ?>/page/about">About</a></li><li><a href="<?php echo $site->url(); ?>/page/contact">Contact</a></li><li><a href="<?php echo $site->url(); ?>/page/legal">Legal</a></li><li><a href="<?php echo $site->url(); ?>/page/stories">Stories</a></li></ul></nav>
-                <button onclick="topFunction()" id="buttonTop" class="topButton" title="Haut de page"><span class="legend"><i class="fas fa-arrow-up"></i></span></button>
+              <!--  <nav><ul class="navigation"><li><a href="<?php echo $site->url(); ?>/page/about">About</a></li><li><a href="<?php echo $site->url(); ?>/page/contact">Contact</a></li><li><a href="<?php echo $site->url(); ?>/page/legal">Legal</a></li><li><a href="<?php echo $site->url(); ?>/page/stories">Stories</a></li></ul></nav>
+-->                <button onclick="topFunction()" id="buttonTop" class="topButton" title="Haut de page"><span class="legend"><i class="fas fa-arrow-up"></i></span></button>
             </footer>
         </div>
         <script>
