@@ -17,9 +17,11 @@ foreach ($this->resources as $resource):
     $body = $resource->value($bodyTerm);
 ?>
     <li class="<?php echo $this->resourceType; ?> resource">
+<!-- set entire li as resource link -->
+  <?php $resource->url($resource); ?>
       <!-- set inventarisnummer in image -->
             <?php if ($invnr = $resource->value('modsrdf:identifier')): ?>
-            <div class="volumeNumber"><!--<?php echo 'invnr ' ?>--><?php echo $invnr; ?></div>
+            <div class="volumeNumber"><?php echo $invnr; ?></div>
         <?php endif; ?>
         <?php if ($thumbnail = $this->thumbnail($resource, 'medium')): ?>
         <?php echo '<center>'; echo $resource->linkRaw($thumbnail); echo '</center>';?>

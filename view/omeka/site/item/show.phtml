@@ -30,7 +30,14 @@ foreach ($item->media() as $media) {
     <?php foreach ($lightMedia as $media): ?>
         <?php $source = ($media->originalUrl()) ? $media->originalUrl() : $media->source(); ?>
         <li data-src="<?php echo $source; ?>" data-thumb="<?php echo $escape($media->thumbnailUrl('square')); ?>" data-title="<?php if ($license = $media->value('schema:copyrightHolder')): ?><?php echo "<b>Titre : </b><br/>".$escape($media->value('dcterms:title')); echo "<br/>"; echo "<b>License : </b><br/>".$escape($media->value('schema:copyrightHolder')); ?><?php endif; ?>" class="media resource">
-            <?php echo $media->render(); ?>
+            <?php echo $media->render();
+// Add media metadata
+//        if (empty($media)'dcterms:creator'):
+//            echo 'photo: ' . $media->link($media->value('dcterms:creator'));
+//            echo ' - license: ' . $media->link($media->value('dcterms:license'));
+              echo $media->link($media->value('dcterms:creator')) . ' - ';
+              echo $media->link($media->value('dcterms:license'));
+             ?>
         </li>
     <?php endforeach; ?>
 </ul>
