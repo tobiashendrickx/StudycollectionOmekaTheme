@@ -60,7 +60,10 @@ foreach ($item->values() as $prop) {
   <?php $hasObject = true;?>
   <div class="property">
     <h4>Full location</h4>
-
+    <div class="values">
+      <?php
+        echo $item->displayTitle() . ' &rsaquo; ';
+      ?>
     <?php
     $loc = '';
     while ($hasObject == true) {
@@ -69,7 +72,8 @@ foreach ($item->values() as $prop) {
       foreach($objectValues as $ovalue):
         if($ovalue->property()->label() == 'has current location' || $ovalue->property()->label() == 'Is Part Of'):
           $loc = $ovalue->valueResource();
-          echo $loc->link($loc->displayTitle());
+          //echo $loc->link($loc->displayTitle());
+          echo $loc->displayTitle();
         endif;
       endforeach;
 
@@ -94,8 +98,9 @@ foreach ($item->values() as $prop) {
       endif;
     }?>
   </div>
-  <?php endif;
-  //EXTRA end
+</div>
+<?php endif;
+//EXTRA end
 ?>
 <?php if (count($otherMedia) > 0): ?>
  <div id="other-media" class="property">
