@@ -45,7 +45,63 @@ foreach ($item->media() as $media) {
 </div>
 <div class="testHalf">
 <?php echo $item->displayValues(); ?>
+<?php
+//EXTRA: show full location hierarchy
+$objectValues = [];
+foreach ($item->values() as $prop) {
+    foreach ($prop['values'] as $ovalue) {
+        if (strpos($ovalue->type(), 'resource') !== false) {
+            $objectValues[] = $ovalue;
+        }
+    }
+}
+?>
+<?php if($objectValues):?>
+  <?php $hasObject = true;?>
+  <div class="property">
+    <h4>Full location</h4>
+    <div class="values">
+      <?php
+        echo $item->displayTitle() . ' &rsaquo; ';
+      ?>
+    <?php
+    $loc = '';
+    while ($hasObject == true) {
+      //search for locations (relations or is part of)
+      $loc = '';
+      foreach($objectValues as $ovalue):
+        if($ovalue->property()->label() == 'has current location' || $ovalue->property()->label() == 'Is Part Of'):
+          $loc = $ovalue->valueResource();
+          //echo $loc->link($loc->displayTitle());
+          echo $loc->displayTitle();
+        endif;
+      endforeach;
 
+      //search for locations in locations
+      if($loc && ($item->id() != $loc->id())):
+        $objectValues = [];
+        foreach ($loc->values() as $prop) {
+            foreach ($prop['values'] as $ovalue) {
+                if (strpos($ovalue->type(), 'resource') !== false) {
+                    $objectValues[] = $ovalue;
+                }
+            }
+        }
+        if($objectValues):
+          echo ' &rsaquo; ';
+        else:
+          $hasObject = false;
+        endif;
+      else:
+        //end loop if no locations found
+        $hasObject = false;
+      endif;
+    }?>
+  </div>
+</div>
+<?php endif;
+//EXTRA end
+?>
 <?php if (count($otherMedia) > 0): ?>
  <div id="other-media" class="property">
     <h4><?php echo $this->translate('Other Media'); ?></h4>
