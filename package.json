@@ -21,17 +21,17 @@
   },
   "homepage": "https://github.com/INHAParis/",
   "devDependencies": {
-    "autoprefixer": "^9.2.1",
-    "gulp": "^4.0.2",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2",
-    "susy": "^2.2.12"
+    "autoprefixer": "^10.4.24",
+    "gulp": "^5.0.1",
+    "gulp-postcss": "^10.0.0",
+    "gulp-sass": "^6.0.1",
+    "susy": "^3.0.8"
   },
   "browserslist": [
     "> 5%",
     "> 1% in US"
   ],
   "dependencies": {
-    "node-sass": "^4.14.1"
+    "node-sass": "^9.0.0"
   }
 }
