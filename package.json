@@ -32,6 +32,7 @@
     "> 1% in US"
   ],
   "dependencies": {
-    "node-sass": "^9.0.0"
+    "sass": "^1.97.3",
+    "tar": "^7.5.9"
   }
 }
